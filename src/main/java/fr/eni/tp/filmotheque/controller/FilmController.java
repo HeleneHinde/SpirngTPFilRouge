@@ -5,11 +5,13 @@ import fr.eni.tp.filmotheque.bo.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Controller
 public class FilmController {
 
     @Autowired
@@ -17,17 +19,19 @@ public class FilmController {
     Film film;
     List<Film> filmList= new ArrayList<>();
 
+
     public void afficherUnFilm(int id) {
 
        this.film= filmServiceBouchon.consulterFilmParId(id);
         System.out.println(film);
 
     }
+    @GetMapping("/listfilm")
+    public String afficherFilms(Model model) {
 
-    public void afficherFilms() {
-        this.filmList=filmServiceBouchon.consulterFilms();
-        for (Film film : filmList){
-            System.out.println(film);
-        }
+        this.filmList= filmServiceBouchon.consulterFilms();
+        model.addAttribute("data", this.filmList);
+
+        return "listfilm";
     }
 }

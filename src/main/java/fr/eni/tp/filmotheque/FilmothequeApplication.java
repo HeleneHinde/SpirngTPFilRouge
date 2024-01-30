@@ -20,7 +20,7 @@ public class FilmothequeApplication {
 		
 		// Affichage de la liste des films
 		System.out.println("\n");
-		controller.afficherFilms();
+/*		controller.afficherFilms();*/
 
 
 	}
