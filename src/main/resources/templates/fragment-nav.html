@@ -1,0 +1,32 @@
+<nav  data-th-fragment="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Accueil</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/listfilm">Liste des films</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/addfilm">Ajouter un film</a>
+            </li>
+            <li class="nav-item" th:unless="${session['membreConnecte'] != null}">
+                <a class="nav-link" href="/contexte">Login</a>
+            </li>
+
+                <!-- Utilisation de Thymeleaf pour récupérer le membre connecté -->
+            <li th:if="${session['membreConnecte'] ne null}">
+                <a class="nav-link" href="/contexteoff">se déconnecter</a>
+            </li>
+            <li th:if="${session['membreConnecte'] ne null}">
+                <!-- Accédez aux propriétés de l'utilisateur connecté -->
+                <p>Bienvenue, <span th:text="${#session.getAttribute('membreConnecte').prenom}"></span>!</p>
+            </li>
+        </ul>
+    </div>
+</nav>

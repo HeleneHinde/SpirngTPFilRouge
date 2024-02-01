@@ -1,0 +1,13 @@
+<form th:object="${formFilm}" method="post" action="/addfilm">
+    <div class="user-box">
+        <input th:field="${film.titre}" type="text">
+        <label>Titre</label>
+    </div>
+    <div class="user-box">
+        <input th:field="${film.synopsis}" type="text">
+        <label>Synopsis</label>
+    </div>
+    <button class="btn btn-dark">
+        Enregistrer
+    </button>
+</form>

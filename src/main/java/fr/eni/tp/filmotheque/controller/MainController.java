@@ -16,16 +16,22 @@ public class MainController {
         return "welcome";
     }
 
-    @PostMapping("/login")
-    public String loginForm(@ModelAttribute("formUser") Membre membre, Model model){
-        model.addAttribute("user", membre);
-        System.out.println(membre);
-        return "login-form";
-    }
     @GetMapping("/login")
     public String loginFormGet(Model model){
         Membre user = new Membre("coucou","coucou",true,null);
         model.addAttribute("user", user);
         return "login-form";
     }
+
+    @PostMapping("/login")
+    public String loginForm(@ModelAttribute("formUser") Membre membre, Model model){
+        model.addAttribute("user", membre);
+        System.out.println(membre);
+
+        if (!membre.getMotDePasse().isEmpty()){
+            return "redirect:/";
+        }
+        return "login-form";
+    }
+
 }
