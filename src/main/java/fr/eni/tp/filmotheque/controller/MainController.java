@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
@@ -24,11 +25,12 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public String loginForm(@ModelAttribute("formUser") Membre membre, Model model){
+    public String loginForm(@ModelAttribute("formUser") Membre membre, Model model, RedirectAttributes redirectAttributes){
         model.addAttribute("user", membre);
         System.out.println(membre);
 
         if (!membre.getMotDePasse().isEmpty()){
+            redirectAttributes.addFlashAttribute("flash_message", "Vous vous êtes connecté avec succès!");
             return "redirect:/";
         }
         return "login-form";

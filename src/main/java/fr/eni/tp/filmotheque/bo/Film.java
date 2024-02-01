@@ -96,6 +96,10 @@ public class Film {
         this.avisList = avisList;
     }
 
+    public void addAvis(Avis avis){
+        this.avisList.add(avis);
+    }
+
     public Participant getRealisateur() {
         return realisateur;
     }

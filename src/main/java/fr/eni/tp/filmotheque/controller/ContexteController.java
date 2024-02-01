@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @SessionAttributes("membreConnecte")
 @Controller
@@ -24,15 +25,16 @@ public class ContexteController {
     }
 
     @PostMapping("/contexte")
-    public String seConnecterAuContextePost(String mail, Model model) {
+    public String seConnecterAuContextePost(Model model, RedirectAttributes redirectAttributes) {
 
-        mail = "jtrillard@campus-eni.fr";
+       String mail = "jtrillard@campus-eni.fr";
 
         Membre membre =  this.contexteServiceBouchon.charger(mail);
 
         if (membre != null) {
             // Ajoutez le membreConnecte à la session
             model.addAttribute("membreConnecte", membre);
+            redirectAttributes.addFlashAttribute("flash_message", "Vous vous êtes connecté avec succès!");
             return "redirect:/";
         } else {
             // Gestion de l'échec de connexion

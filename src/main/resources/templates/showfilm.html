@@ -6,6 +6,15 @@
 <div class="container">
 <h2 th:text="${film.titre}"></h2>
 
+    <div th:each="avis : ${film.avis}">
+        <p th:text="${avis.commentaire}">
+        </p>
+        <p th:text="${avis.note}">
+        </p>
+    </div>
+
+    <a class="btn btn-dark" th:href="@{/addavis/{id}(id=${film.id})}">Ajouter un Avis</a>
+
 </div>
 </body>
 <div data-th-replace="~{fragment-foot::foot}"></div>

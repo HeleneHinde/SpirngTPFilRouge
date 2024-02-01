@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SessionAttributes("membreConnecte")
+@SessionAttributes({"membreConnecte", "genres"})
 @Controller
 public class FilmController {
 
@@ -23,7 +23,7 @@ public class FilmController {
 
     @GetMapping("/detailfilm/{id}")
     public String afficherUnFilm(@PathVariable(name = "id") int id, Model model) {
-        System.out.println(model.getAttribute("membreConnecte"));
+
         if(model.getAttribute("membreConnecte") != null){
             Film film= filmServiceBouchon.consulterFilmParId(id);
             model.addAttribute("film", film);

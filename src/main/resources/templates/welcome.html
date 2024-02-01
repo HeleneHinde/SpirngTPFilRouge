@@ -5,8 +5,16 @@
 <div data-th-replace="~{fragment-nav::nav}"></div>
 
 <div class="container">
+
+    <div th:if="${flash_message}" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div th:text="${flash_message}" class="flash-message"></div>
+    </div>
+
 <h1> coucou</h1>
 <h1 th:text="${data}"></h1>
+
+
+
 </div>
 </body>
 <div data-th-replace="~{fragment-foot::foot}"></div>

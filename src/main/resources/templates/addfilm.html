@@ -8,7 +8,7 @@
 
     <form>
         <label>Genre</label>
-        <select >
+        <select th:if="${session.membreConnecte != null}">
             <option th:each="genre : ${genres}" th:text="${genre.titre}" th:value="${genre.id}"></option>
         </select>
     </form>

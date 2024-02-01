@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<div data-th-replace="~{fragment-entete::entete}"></div>
+<body>
+<div data-th-replace="~{fragment-nav::nav}"></div>
+<div class="login-box">
+    <h2>Ajouter un avis au film :<span th:text="${film.titre}"></span></h2>
+
+    <form class="container" th:object="${formAvis}" method="post" th:action="@{/addavis/{id}(id=${film.id})}">
+        <div class="form-group">
+        <label>Commentaire</label>
+        <input class="form-control" th:field="${avis.commentaire}" type="text">
+        </div>
+            <div class="form-group">
+        <label>Note</label>
+        <input class="form-control" th:field="${avis.note}" type="number">
+            </div>
+        <button class="btn btn-dark">
+            Submit
+        </button>
+    </form>
+</div>
+</body>
+<div data-th-replace="~{fragment-foot::foot}"></div>
+</html>
