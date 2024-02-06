@@ -137,4 +137,8 @@ public class FilmServiceBouchon implements FilmService {
 		Avis avis = new Avis(1, 4, "On rit du début à la fin", membre1);
 		bienvenueChezLesChtis.getAvis().add(avis);
 	}
+
+	public void ajouterFilm(Film film){
+		lstFilms.add(film);
+	}
 }

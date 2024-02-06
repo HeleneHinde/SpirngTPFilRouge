@@ -3,9 +3,11 @@ package fr.eni.tp.filmotheque.controller;
 import fr.eni.tp.filmotheque.bll.mock.FilmServiceBouchon;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
+import fr.eni.tp.filmotheque.bo.Participant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,17 +40,19 @@ public class FilmController {
         Film film = new Film();
         model.addAttribute("film", film);
         List<Genre> genres = this.filmServiceBouchon.consulterGenres();
-        model.addAttribute("genres", genres);
+        model.addAttribute("genresList", genres);
+        List<Participant> acteurs = this.filmServiceBouchon.consulterParticipants();
+        model.addAttribute("acteurs", acteurs);
 
         return "addfilm";
     }
 
     @PostMapping("/addfilm")
-    public String creerUnFilmPost(@ModelAttribute("formFilm") Film film, Model model) {
+    public String creerUnFilmPost(@ModelAttribute("film") Film film,BindingResult bindingResult) {
+        System.out.println(film + "post");
+        this.filmServiceBouchon.ajouterFilm(film);
 
-        model.addAttribute("film",film);
-
-
+        System.out.println(film);
         if (!film.getTitre().isEmpty()){
             return "redirect:/";
         }

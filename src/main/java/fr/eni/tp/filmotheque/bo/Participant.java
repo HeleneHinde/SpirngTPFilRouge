@@ -1,6 +1,7 @@
 package fr.eni.tp.filmotheque.bo;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Participant extends Personne{
 
@@ -9,12 +10,6 @@ public class Participant extends Personne{
 
     public Participant() {
         super();
-    }
-
-    public Participant(List<Film> filmsActeur, List<Film> filmReal) {
-        super();
-        this.filmsActeur = filmsActeur;
-        this.filmReal = filmReal;
     }
 
     public Participant(int id, String nom, String prenom) {
@@ -49,5 +44,17 @@ public class Participant extends Personne{
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 '}';
+    }
+
+    public String getFullName(){
+        return nom + " "+ prenom;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Participant participant = (Participant) obj;
+        return Objects.equals(id, participant.id);
     }
 }

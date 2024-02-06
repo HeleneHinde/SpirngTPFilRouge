@@ -17,7 +17,6 @@ public class Film {
     private List<Participant> acteurs = new ArrayList<>();
 
     public Film() {
-
     }
 
     public Film(int id, String titre, int annee, int duree, String synopsis, Genre genres, List<Avis> avisList, Participant realisateur, List<Participant> acteurs) {

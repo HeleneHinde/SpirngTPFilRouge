@@ -12,14 +12,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/listfilm">Liste des films</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addfilm">Ajouter un film</a>
-            </li>
             <li class="nav-item" th:unless="${session['membreConnecte'] != null}">
                 <a class="nav-link" href="/contexte">Login</a>
             </li>
 
                 <!-- Utilisation de Thymeleaf pour récupérer le membre connecté -->
+            <li th:if="${session['membreConnecte'] ne null}">
+                <a class="nav-link" href="/addfilm">Ajouter un film</a>
+            </li>
             <li th:if="${session['membreConnecte'] ne null}">
                 <a class="nav-link" href="/contexteoff">se déconnecter</a>
             </li>

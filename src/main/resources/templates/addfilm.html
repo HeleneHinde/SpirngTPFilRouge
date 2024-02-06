@@ -1,19 +1,54 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <div data-th-replace="~{fragment-entete::entete}"></div>
 <body>
 <div data-th-replace="~{fragment-nav::nav}"></div>
 <div class="container">
     <h2>Ajout d'un film</h2>
+    <div th:if="${session.membreConnecte != null}">
+        <form class="container" th:object="${film}" method="post" th:action="@{/addfilm}">
+            <div class="form-group">
+                <label>Nom</label>
+                <input class="form-control" th:field="*{titre}" type="text">
+            </div>
+            <div class="form-group">
+                <label>Année de sortie</label>
+                <input class="form-control" th:field="*{annee}" type="number">
+            </div>
+            <div class="form-group">
+                <label>Durée</label>
+                <input class="form-control" th:field="*{duree}" type="number">
+            </div>
+            <div class="form-group">
+                <label>Acteurs</label>
+                <select multiple="multiple" th:field="*{acteurs}" class="form-select">
+                    <option th:each="acteur : ${acteurs}" th:text="${acteur.getFullName()}"
+                            th:value="${acteur.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Réalisateur</label>
+                <select th:field="*{realisateur}" class="form-select">
+                    <option th:each="acteur : ${acteurs}" th:text="${acteur.getFullName()}"
+                            th:value="${acteur.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <select th:field="*{genres}" class="form-select">
+                    <option th:each="genre : ${genresList}" th:text="${genre.titre}" th:value="${genre.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Synopsis</label>
+                <textarea class="form-control" th:field="*{synopsis}"></textarea>
+            </div>
+            <button class="btn btn-dark">
+                Submit
+            </button>
+        </form>
 
-    <form>
-        <label>Genre</label>
-        <select th:if="${session.membreConnecte != null}">
-            <option th:each="genre : ${genres}" th:text="${genre.titre}" th:value="${genre.id}"></option>
-        </select>
-    </form>
-
-</div>
+    </div>
 </body>
 <div data-th-replace="~{fragment-foot::foot}"></div>
 </html>

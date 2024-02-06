@@ -7,9 +7,11 @@ import fr.eni.tp.filmotheque.bo.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @SessionAttributes({"membreConnecte"})
@@ -35,10 +37,26 @@ public class AvisController {
     }
 
     @PostMapping("/addavis/{id}")
-    public String creerUnAvisPost(@PathVariable(name = "id") int id, @ModelAttribute("formAvis") Avis avis, Model model, RedirectAttributes redirectAttributes) {
+    public String creerUnAvisPost(@PathVariable(name = "id") int id,
+                                  @Valid @ModelAttribute("formAvis") Avis avis,
+                                  BindingResult result,
+                                  Model model,
+                                  RedirectAttributes redirectAttributes
+                                  ) {
 
         model.addAttribute("avis", avis);
         System.out.println(avis);
+
+        System.out.println(result.hasErrors());
+
+        if (result.hasErrors()) {
+            System.out.println("controle erreur");
+            model.addAttribute("errors", result.getAllErrors());
+            Film film = filmServiceBouchon.consulterFilmParId(id);
+            model.addAttribute("film", film);
+            model.addAttribute("avis", avis);
+            return "addavis";
+        }
 
         if (!avis.getCommentaire().isEmpty()){
             Film film = filmServiceBouchon.consulterFilmParId(id);

@@ -5,14 +5,34 @@
 <div data-th-replace="~{fragment-nav::nav}"></div>
 <div class="container">
 <h2 th:text="${film.titre}"></h2>
-
+<div class="container">
+    <h6>Durée</h6>
+    <p th:text="${film.duree}"></p>
+    <h6>Année</h6>
+    <p th:text="${film.annee}"></p>
+    <h6>Synopsis</h6>
+    <p th:text="${film.synopsis}"></p>
+    <h6>Réalisateur</h6>
+    <div th:if="${film.realisateur ne null}">
+    <p th:text="${film.realisateur.getFullName()}"></p>
+    </div>
+    <h6>Acteurs</h6>
+    <div th:if="${film.acteurs ne null}">
+    <div th:each="acteurs : ${film.acteurs}">
+        <p th:text="${acteurs.getFullName()}">
+        </p>
+    </div>
+        <h6>Genres</h6>
+        <div th:if="${film.genres ne null}">
+            <p th:text="${film.genres}"></p>
+    </div>
     <div th:each="avis : ${film.avis}">
         <p th:text="${avis.commentaire}">
         </p>
         <p th:text="${avis.note}">
         </p>
     </div>
-
+</div>
     <a class="btn btn-dark" th:href="@{/addavis/{id}(id=${film.id})}">Ajouter un Avis</a>
 
 </div>

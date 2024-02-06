@@ -6,6 +6,12 @@
 <div class="login-box">
     <h2>Ajouter un avis au film :<span th:text="${film.titre}"></span></h2>
 
+    <div class="container" th:if="${errors ne null}">
+        <div th:each="error : ${errors}">
+            <p class="text-danger" th:text="${error.getDefaultMessage()}">"</p>
+        </div>
+    </div>
+
     <form class="container" th:object="${formAvis}" method="post" th:action="@{/addavis/{id}(id=${film.id})}">
         <div class="form-group">
         <label>Commentaire</label>
