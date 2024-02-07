@@ -1,6 +1,6 @@
 package fr.eni.tp.filmotheque.controller;
 
-import fr.eni.tp.filmotheque.bll.mock.FilmServiceBouchon;
+import fr.eni.tp.filmotheque.bll.service.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
 import fr.eni.tp.filmotheque.bo.Participant;
@@ -18,7 +18,7 @@ import java.util.List;
 public class FilmController {
 
     @Autowired
-    FilmServiceBouchon filmServiceBouchon;
+    FilmService filmServiceBouchon;
 
 
 
@@ -27,7 +27,7 @@ public class FilmController {
     public String afficherUnFilm(@PathVariable(name = "id") int id, Model model) {
 
         if(model.getAttribute("membreConnecte") != null){
-            Film film= filmServiceBouchon.consulterFilmParId(id);
+            Film film= filmServiceBouchon.getById(id);
             model.addAttribute("film", film);
             return "showfilm";
         }
@@ -39,9 +39,9 @@ public class FilmController {
 
         Film film = new Film();
         model.addAttribute("film", film);
-        List<Genre> genres = this.filmServiceBouchon.consulterGenres();
+        List<Genre> genres = this.filmServiceBouchon.getGenres();
         model.addAttribute("genresList", genres);
-        List<Participant> acteurs = this.filmServiceBouchon.consulterParticipants();
+        List<Participant> acteurs = this.filmServiceBouchon.getParticipant();
         model.addAttribute("acteurs", acteurs);
 
         return "addfilm";
@@ -50,7 +50,7 @@ public class FilmController {
     @PostMapping("/addfilm")
     public String creerUnFilmPost(@ModelAttribute("film") Film film,BindingResult bindingResult) {
         System.out.println(film + "post");
-        this.filmServiceBouchon.ajouterFilm(film);
+        this.filmServiceBouchon.addFilm(film);
 
         System.out.println(film);
         if (!film.getTitre().isEmpty()){
@@ -63,7 +63,7 @@ public class FilmController {
     @GetMapping("/listfilm")
     public String afficherFilms(Model model) {
         List<Film> filmList= new ArrayList<>();
-        filmList= filmServiceBouchon.consulterFilms();
+        filmList= filmServiceBouchon.getAll();
         model.addAttribute("data", filmList);
 
         return "listfilm";

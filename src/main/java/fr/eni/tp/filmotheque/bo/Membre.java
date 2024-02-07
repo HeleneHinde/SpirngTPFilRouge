@@ -1,5 +1,8 @@
 package fr.eni.tp.filmotheque.bo;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -9,6 +12,7 @@ public class Membre extends Personne{
 
     private String pseudo;
     private String motDePasse;
+    @Column(columnDefinition = "boolean default false")
     private boolean admin;
 
     @OneToMany(targetEntity = Avis.class, mappedBy = "auteur")

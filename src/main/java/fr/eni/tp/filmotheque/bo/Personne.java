@@ -1,6 +1,7 @@
 package fr.eni.tp.filmotheque.bo;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -9,7 +10,7 @@ public abstract class Personne {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String nom;
     protected String prenom;

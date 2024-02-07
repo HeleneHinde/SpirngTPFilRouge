@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import fr.eni.tp.filmotheque.bo.Membre;
 
 @Service
-@Profile("dev")
 public class ContexteServiceBouchon implements ContexteService {
 	// Liste des membres
 	private static List<Membre> lstMembres;

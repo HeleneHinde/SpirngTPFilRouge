@@ -7,7 +7,7 @@ import java.util.List;
 public class Genre {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titre;
     @OneToMany(targetEntity = Film.class, mappedBy = "genre")

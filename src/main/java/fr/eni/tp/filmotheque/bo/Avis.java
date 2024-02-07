@@ -2,10 +2,7 @@ package fr.eni.tp.filmotheque.bo;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +12,9 @@ import javax.validation.constraints.Size;
 public class Avis {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Min(value = 0, message = "La note doit être au moins 0")
     @Max(value = 5, message = "La note doit être au plus 5")
@@ -27,12 +27,9 @@ public class Avis {
     @ManyToOne(targetEntity = Film.class)
     private Film film;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Membre.class)
     private Membre auteur;
 
-    @Id
-    @GeneratedValue
-    private Long id;
 
     public Avis() {
     }

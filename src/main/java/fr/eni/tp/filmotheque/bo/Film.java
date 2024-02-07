@@ -9,7 +9,7 @@ import java.util.List;
 public class Film {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titre;
     private int annee;
@@ -17,11 +17,11 @@ public class Film {
     private String synopsis;
     @ManyToOne(targetEntity = Genre.class)
     private Genre genre;
-    @OneToMany(targetEntity = Avis.class, mappedBy = "film")
+    @OneToMany(targetEntity = Avis.class, mappedBy = "film", cascade = CascadeType.ALL)
     private List<Avis> avisList = new ArrayList<>();
-    @ManyToOne(targetEntity = Participant.class)
+    @ManyToOne(targetEntity = Participant.class, cascade = CascadeType.PERSIST)
     private Participant realisateur;
-    @ManyToMany(targetEntity = Participant.class)
+    @ManyToMany(targetEntity = Participant.class, cascade = CascadeType.PERSIST)
     private List<Participant> acteurs = new ArrayList<>();
 
     public Film() {
