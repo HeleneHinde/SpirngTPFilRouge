@@ -1,33 +1,30 @@
 package fr.eni.tp.filmotheque.bo;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Genre {
 
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String titre;
+    @OneToMany(targetEntity = Film.class, mappedBy = "genre")
     private List<Film> films;
 
     public Genre() {
     }
 
-    public Genre(int id, String titre, List<Film> films) {
+    public Genre(Long id, String titre, List<Film> films) {
         this.id = id;
         this.titre = titre;
         this.films = films;
     }
 
-    public Genre(int id, String genre) {
+    public Genre(Long id, String genre) {
         this.id = id;
         this.titre = genre;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitre() {
@@ -53,5 +50,13 @@ public class Genre {
                 ", titre='" + titre + '\'' +
                 ", films=" + films +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

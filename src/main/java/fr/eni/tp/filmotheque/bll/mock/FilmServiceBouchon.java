@@ -66,7 +66,7 @@ public class FilmServiceBouchon implements FilmService {
 	@Override
 	public void creerFilm(Film film) {
 		// Sauvegarde du film
-		film.setId(indexFilms++);
+		film.setId((long) indexFilms++);
 		lstFilms.add(film);
 	}
 
@@ -77,26 +77,26 @@ public class FilmServiceBouchon implements FilmService {
 	public void simulationCoucheDALetDB() {
 		// Création de la liste des genres
 		for (int index = 0; index < genres.length; index++) {
-			lstGenres.add(new Genre(index + 1, genres[index]));
+			lstGenres.add(new Genre((long) (index + 1), genres[index]));
 		}
 
 		// Création de la liste des participants aux films (acteurs et réalisateurs)
 		// 3 réalisateurs dont 1 pour 2 films et 1 réalisateurs qui est aussi un acteur
-		lstParticipants.add(new Participant(1, "Spielberg", "Steven"));
-		lstParticipants.add(new Participant(2, "Cronenberg", "David"));
-		lstParticipants.add(new Participant(3, "Boon", "Dany"));
+		lstParticipants.add(new Participant(1L, "Spielberg", "Steven"));
+		lstParticipants.add(new Participant(2L, "Cronenberg", "David"));
+		lstParticipants.add(new Participant(3L, "Boon", "Dany"));
 
 		// 2 acteurs par film et l'un d'eux dans 2 films
-		lstParticipants.add(new Participant(4, "Attenborough", "Richard"));
-		lstParticipants.add(new Participant(5, "Goldblum", "Jeff"));
-		lstParticipants.add(new Participant(6, "Davis", "Geena"));
-		lstParticipants.add(new Participant(7, "Rylance", "Mark"));
-		lstParticipants.add(new Participant(8, "Barnhill", "Ruby"));
-		lstParticipants.add(new Participant(9, "Merad", "Kad"));
+		lstParticipants.add(new Participant(4L, "Attenborough", "Richard"));
+		lstParticipants.add(new Participant(5L, "Goldblum", "Jeff"));
+		lstParticipants.add(new Participant(6L, "Davis", "Geena"));
+		lstParticipants.add(new Participant(7L, "Rylance", "Mark"));
+		lstParticipants.add(new Participant(8L, "Barnhill", "Ruby"));
+		lstParticipants.add(new Participant(9L, "Merad", "Kad"));
 
 		// Création de la liste de films
 		// 4 films
-		Film jurassicPark = new Film(indexFilms++, "Jurassic Park", 1993, 128,
+		Film jurassicPark = new Film((long) indexFilms++, "Jurassic Park", 1993, 128,
 				"Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.");
 		jurassicPark.setGenre(lstGenres.get(1));
 		jurassicPark.setRealisateur(consulterParticipantParId(1));
@@ -105,7 +105,7 @@ public class FilmServiceBouchon implements FilmService {
 		jurassicPark.getActeurs().add(consulterParticipantParId(5));
 		lstFilms.add(jurassicPark);
 
-		Film theFly = new Film(indexFilms++, "The Fly", 1986, 95,
+		Film theFly = new Film((long) indexFilms++, "The Fly", 1986, 95,
 				"Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.");
 		theFly.setGenre(lstGenres.get(1));
 		theFly.setRealisateur(consulterParticipantParId(2));
@@ -114,7 +114,7 @@ public class FilmServiceBouchon implements FilmService {
 		theFly.getActeurs().add(consulterParticipantParId(6));
 		lstFilms.add(theFly);
 
-		Film theBFG = new Film(indexFilms++, "The BFG", 2016, 117,
+		Film theBFG = new Film((long) indexFilms++, "The BFG", 2016, 117,
 				"Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.");
 		theBFG.setGenre(lstGenres.get(4));
 		theBFG.setRealisateur(consulterParticipantParId(1));
@@ -123,7 +123,7 @@ public class FilmServiceBouchon implements FilmService {
 		theBFG.getActeurs().add(consulterParticipantParId(8));
 		lstFilms.add(theBFG);
 
-		Film bienvenueChezLesChtis = new Film(indexFilms++, "Bienvenue chez les Ch'tis", 2008, 106,
+		Film bienvenueChezLesChtis = new Film((long) indexFilms++, "Bienvenue chez les Ch'tis", 2008, 106,
 				"Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.");
 		bienvenueChezLesChtis.setGenre(lstGenres.get(4));
 		bienvenueChezLesChtis.setRealisateur(consulterParticipantParId(3));
@@ -133,8 +133,8 @@ public class FilmServiceBouchon implements FilmService {
 		lstFilms.add(bienvenueChezLesChtis);
 
 		// Création d'un membre et un avis
-		Membre membre1 = new Membre(1, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null);
-		Avis avis = new Avis(1, 4, "On rit du début à la fin", membre1);
+		Membre membre1 = new Membre(1L, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null);
+		Avis avis = new Avis(1L, 4, "On rit du début à la fin", membre1);
 		bienvenueChezLesChtis.getAvis().add(avis);
 	}
 

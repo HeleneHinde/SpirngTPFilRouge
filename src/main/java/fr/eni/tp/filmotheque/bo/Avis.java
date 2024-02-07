@@ -2,14 +2,19 @@ package fr.eni.tp.filmotheque.bo;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Avis {
 
-    private int id;
+
 
     @Min(value = 0, message = "La note doit être au moins 0")
     @Max(value = 5, message = "La note doit être au plus 5")
@@ -18,13 +23,21 @@ public class Avis {
     @NotBlank(message = "Le commentaire ne doit pas être vide")
     @Size(max = 250, message = "La longueur du commentaire ne doit pas dépasser 250 caractères")
     private String commentaire;
+
+    @ManyToOne(targetEntity = Film.class)
     private Film film;
+
+    @ManyToOne
     private Membre auteur;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     public Avis() {
     }
 
-    public Avis(int id, int note, String commentaire, Film film, Membre auteur) {
+    public Avis(Long id, int note, String commentaire, Film film, Membre auteur) {
         this.id = id;
         this.note = note;
         this.commentaire = commentaire;
@@ -32,19 +45,11 @@ public class Avis {
         this.auteur = auteur;
     }
 
-    public Avis(int id, int note, String commentaire, Membre auteur) {
+    public Avis(Long id, int note, String commentaire, Membre auteur) {
         this.id = id;
         this.note = note;
         this.commentaire = commentaire;
         this.auteur = auteur;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNote() {
@@ -89,4 +94,13 @@ public class Avis {
                 ", auteur=" + auteur +
                 '}';
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
 }

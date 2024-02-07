@@ -1,18 +1,24 @@
 package fr.eni.tp.filmotheque.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Participant extends Personne{
 
+    @ManyToMany(targetEntity = Film.class, mappedBy = "acteurs")
     private List<Film> filmsActeur;
+    @OneToMany(targetEntity = Film.class, mappedBy = "realisateur")
     private List<Film> filmReal;
 
     public Participant() {
         super();
     }
 
-    public Participant(int id, String nom, String prenom) {
+    public Participant(Long id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom=prenom;

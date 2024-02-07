@@ -23,9 +23,10 @@
         </p>
     </div>
         <h6>Genres</h6>
-        <div th:if="${film.genres ne null}">
-            <p th:text="${film.genres}"></p>
+        <div th:if="${film.genre ne null}">
+            <p th:text="${film.genre.titre}"></p>
     </div>
+        <h6>Avis</h6>
     <div th:each="avis : ${film.avis}">
         <p th:text="${avis.commentaire}">
         </p>

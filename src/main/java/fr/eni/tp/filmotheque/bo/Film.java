@@ -1,50 +1,50 @@
 package fr.eni.tp.filmotheque.bo;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Film {
 
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String titre;
     private int annee;
     private int duree;
     private String synopsis;
-    private Genre genres;
+    @ManyToOne(targetEntity = Genre.class)
+    private Genre genre;
+    @OneToMany(targetEntity = Avis.class, mappedBy = "film")
     private List<Avis> avisList = new ArrayList<>();
+    @ManyToOne(targetEntity = Participant.class)
     private Participant realisateur;
+    @ManyToMany(targetEntity = Participant.class)
     private List<Participant> acteurs = new ArrayList<>();
 
     public Film() {
     }
 
-    public Film(int id, String titre, int annee, int duree, String synopsis, Genre genres, List<Avis> avisList, Participant realisateur, List<Participant> acteurs) {
+    public Film(Long id, String titre, int annee, int duree, String synopsis, Genre genres, List<Avis> avisList, Participant realisateur, List<Participant> acteurs) {
         this.id = id;
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;
         this.synopsis = synopsis;
-        this.genres = genres;
+        this.genre = genres;
         this.avisList = avisList;
         this.realisateur = realisateur;
         this.acteurs = acteurs;
     }
 
-    public Film(int id, String titre, int annee, int duree, String synopsis) {
+    public Film(Long id, String titre, int annee, int duree, String synopsis) {
         this.id = id;
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;
         this.synopsis = synopsis;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitre() {
@@ -79,12 +79,12 @@ public class Film {
         this.synopsis = synopsis;
     }
 
-    public Genre getGenres() {
-        return genres;
+    public Genre getGenre() {
+        return genre;
     }
 
     public void setGenre(Genre genres) {
-        this.genres = genres;
+        this.genre = genres;
     }
 
     public List<Avis> getAvis() {
@@ -125,8 +125,16 @@ public class Film {
                 "synopsis='" + synopsis + '\n' +
                 "realisateur=" + realisateur + '\n'+
                 "acteurs=" + acteurs + '\n'+
-                "genres=" + genres + '\n'+
+                "genres=" + genre + '\n'+
                 "avisList=" + avisList + '\n'+
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

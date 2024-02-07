@@ -1,12 +1,17 @@
 package fr.eni.tp.filmotheque.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class Membre extends Personne{
 
     private String pseudo;
     private String motDePasse;
     private boolean admin;
+
+    @OneToMany(targetEntity = Avis.class, mappedBy = "auteur")
     private List<Avis> avisList;
 
     public Membre() {
@@ -21,7 +26,7 @@ public class Membre extends Personne{
         this.avisList = avisList;
     }
 
-    public Membre(int id, String nom, String prenom, String pseudo, String motDePasse ) {
+    public Membre(Long id, String nom, String prenom, String pseudo, String motDePasse ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;

@@ -17,11 +17,11 @@ public class ContexteServiceBouchon implements ContexteService {
 	public ContexteServiceBouchon() {
 		// initialisation de la liste
 		lstMembres = new ArrayList<>();
-		lstMembres.add(new Membre(1, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null));
-		Membre admin = new Membre(2, "Gobin", "Stéphane", "sgobin@campus-eni.fr", null);
+		lstMembres.add(new Membre(1L, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null));
+		Membre admin = new Membre(2L, "Gobin", "Stéphane", "sgobin@campus-eni.fr", null);
 		admin.setAdmin(true);
 		lstMembres.add(admin);
-		lstMembres.add(new Membre(3, "Trillard", "Julien", "jtrillard@campus-eni.fr", null));
+		lstMembres.add(new Membre(3L, "Trillard", "Julien", "jtrillard@campus-eni.fr", null));
 	}
 
 	@Override

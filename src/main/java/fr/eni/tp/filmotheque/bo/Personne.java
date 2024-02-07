@@ -1,7 +1,16 @@
 package fr.eni.tp.filmotheque.bo;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Personne {
-    protected int id;
+
+
+    @Id
+    @GeneratedValue
+    protected Long id;
     protected String nom;
     protected String prenom;
 
@@ -9,18 +18,10 @@ public abstract class Personne {
 
     }
 
-    public Personne(int id, String nom, String prenom) {
+    public Personne(Long id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -46,5 +47,13 @@ public abstract class Personne {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
