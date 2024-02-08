@@ -28,6 +28,7 @@ public class FilmServiceSql implements FilmService {
 
     @Override
     public List<Film> getAll() {
+
         return (List<Film>) filmRepository.findAll();
     }
 
