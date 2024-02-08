@@ -13,9 +13,9 @@ public interface FilmService {
 
     public  List<Participant> getParticipant();
 
-    public  Genre getByGenreAndId(long id);
+    public  Genre getGenreById(long id);
 
-    public  Participant getByParticipantAndId(long id);
+    public  Participant getParticipantById(long id);
 
     public  void addFilm(Film film);
 

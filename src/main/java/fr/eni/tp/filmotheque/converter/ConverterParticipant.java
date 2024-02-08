@@ -1,7 +1,6 @@
 package fr.eni.tp.filmotheque.converter;
 
 import fr.eni.tp.filmotheque.bll.service.FilmService;
-import fr.eni.tp.filmotheque.bll.service.FilmServiceBouchon;
 import fr.eni.tp.filmotheque.bo.Participant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -17,6 +16,6 @@ public class ConverterParticipant implements Converter<String, Participant> {
     public Participant convert(String source) {
         int id = Integer.parseInt(source);
 
-        return this.filmServiceBouchon.getByParticipantAndId(id);
+        return this.filmServiceBouchon.getParticipantById(id);
     }
 }

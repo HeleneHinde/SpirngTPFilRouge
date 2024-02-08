@@ -44,8 +44,6 @@ public class Participant extends Personne{
     @Override
     public String toString() {
         return "Participant{" +
-                "filmsActeur=" + filmsActeur +
-                ", filmReal=" + filmReal +
                 ", id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

@@ -1,7 +1,6 @@
 package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.service.FilmService;
-import fr.eni.tp.filmotheque.bll.service.FilmServiceBouchon;
 import fr.eni.tp.filmotheque.bo.Avis;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Membre;
@@ -19,14 +18,14 @@ import javax.validation.Valid;
 public class AvisController {
 
     @Autowired
-    FilmService filmServiceBouchon;
+    FilmService filmService;
 
     @GetMapping("/addavis/{id}")
     public String creerUnAvis(@PathVariable(name = "id") int id, Model model) {
 
         if(model.getAttribute("membreConnecte") != null) {
 
-            Film film = filmServiceBouchon.getById(id);
+            Film film = filmService.getById(id);
             model.addAttribute("film", film);
             Avis avis = new Avis();
             model.addAttribute("avis", avis);
@@ -52,20 +51,20 @@ public class AvisController {
         if (result.hasErrors()) {
             System.out.println("controle erreur");
             model.addAttribute("errors", result.getAllErrors());
-            Film film = filmServiceBouchon.getById(id);
+            Film film = filmService.getById(id);
             model.addAttribute("film", film);
             model.addAttribute("avis", avis);
             return "addavis";
         }
 
         if (!avis.getCommentaire().isEmpty()) {
-            Film film = filmServiceBouchon.getById(id);
-            Membre auteur = filmServiceBouchon.getMembreById(1L);
+            Film film = filmService.getById(id);
+            Membre auteur = filmService.getMembreById(1L);
             avis.setFilm(film);
             avis.setAuteur(auteur);
            // filmServiceBouchon.addAvis(avis);
             film.getAvis().add(avis);
-            filmServiceBouchon.addFilm(film);
+            filmService.addFilm(film);
             model.addAttribute("film", film);
             // Ajouter un message flash pour afficher après la redirection
             redirectAttributes.addFlashAttribute("flash_message", "Commentaire ajouté avec succès!");

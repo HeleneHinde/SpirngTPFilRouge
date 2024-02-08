@@ -49,13 +49,15 @@ public class FilmServiceSql implements FilmService {
     }
 
     @Override
-    public Genre getByGenreAndId(long id) {
-        return null;
+    public Genre getGenreById(long id) {
+
+        return genreRepository.findById(id).get();
     }
 
     @Override
-    public Participant getByParticipantAndId(long id) {
-        return null;
+    public Participant getParticipantById(long id) {
+
+        return participantRepository.findById(id).get();
     }
 
     @Override

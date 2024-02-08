@@ -87,7 +87,6 @@ public class Avis {
                 "id=" + id +
                 ", note=" + note +
                 ", commentaire='" + commentaire + '\'' +
-                ", film=" + film +
                 ", auteur=" + auteur +
                 '}';
     }

@@ -50,7 +50,7 @@ public class FilmServiceBouchon implements FilmService {
 	}
 
 	@Override
-	public Genre getByGenreAndId(long id) {
+	public Genre getGenreById(long id) {
 		return lstGenres.stream().filter(item -> item.getId() == id).findAny().orElse(null);
 	}
 
@@ -59,7 +59,7 @@ public class FilmServiceBouchon implements FilmService {
 	 * @return null si inconnu
 	 */
 	@Override
-	public Participant getByParticipantAndId(long id) {
+	public Participant getParticipantById(long id) {
 		return lstParticipants.stream().filter(item -> item.getId() == id).findAny().orElse(null);
 	}
 
@@ -109,37 +109,37 @@ public class FilmServiceBouchon implements FilmService {
 		Film jurassicPark = new Film((long) indexFilms++, "Jurassic Park", 1993, 128,
 				"Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.");
 		jurassicPark.setGenre(lstGenres.get(1));
-		jurassicPark.setRealisateur(getByParticipantAndId(1));
+		jurassicPark.setRealisateur(getParticipantById(1));
 		// Associer les acteurs
-		jurassicPark.getActeurs().add(getByParticipantAndId(4));
-		jurassicPark.getActeurs().add(getByParticipantAndId(5));
+		jurassicPark.getActeurs().add(getParticipantById(4));
+		jurassicPark.getActeurs().add(getParticipantById(5));
 		lstFilms.add(jurassicPark);
 
 		Film theFly = new Film((long) indexFilms++, "The Fly", 1986, 95,
 				"Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.");
 		theFly.setGenre(lstGenres.get(1));
-		theFly.setRealisateur(getByParticipantAndId(2));
+		theFly.setRealisateur(getParticipantById(2));
 		// Associer les acteurs
-		theFly.getActeurs().add(getByParticipantAndId(5));
-		theFly.getActeurs().add(getByParticipantAndId(6));
+		theFly.getActeurs().add(getParticipantById(5));
+		theFly.getActeurs().add(getParticipantById(6));
 		lstFilms.add(theFly);
 
 		Film theBFG = new Film((long) indexFilms++, "The BFG", 2016, 117,
 				"Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.");
 		theBFG.setGenre(lstGenres.get(4));
-		theBFG.setRealisateur(getByParticipantAndId(1));
+		theBFG.setRealisateur(getParticipantById(1));
 		// Associer les acteurs
-		theBFG.getActeurs().add(getByParticipantAndId(7));
-		theBFG.getActeurs().add(getByParticipantAndId(8));
+		theBFG.getActeurs().add(getParticipantById(7));
+		theBFG.getActeurs().add(getParticipantById(8));
 		lstFilms.add(theBFG);
 
 		Film bienvenueChezLesChtis = new Film((long) indexFilms++, "Bienvenue chez les Ch'tis", 2008, 106,
 				"Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.");
 		bienvenueChezLesChtis.setGenre(lstGenres.get(4));
-		bienvenueChezLesChtis.setRealisateur(getByParticipantAndId(3));
+		bienvenueChezLesChtis.setRealisateur(getParticipantById(3));
 		// Associer les acteurs
-		bienvenueChezLesChtis.getActeurs().add(getByParticipantAndId(3));
-		bienvenueChezLesChtis.getActeurs().add(getByParticipantAndId(9));
+		bienvenueChezLesChtis.getActeurs().add(getParticipantById(3));
+		bienvenueChezLesChtis.getActeurs().add(getParticipantById(9));
 		lstFilms.add(bienvenueChezLesChtis);
 
 		// Création d'un membre et un avis

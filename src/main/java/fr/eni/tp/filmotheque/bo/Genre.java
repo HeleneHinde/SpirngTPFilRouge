@@ -48,7 +48,6 @@ public class Genre {
         return "Genre{" +
                 "id=" + id +
                 ", titre='" + titre + '\'' +
-                ", films=" + films +
                 '}';
     }
 
