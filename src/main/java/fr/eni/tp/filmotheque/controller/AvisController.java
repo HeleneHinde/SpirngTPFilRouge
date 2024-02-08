@@ -44,12 +44,9 @@ public class AvisController {
                                   ) {
 
         model.addAttribute("avis", avis);
-        System.out.println(avis);
-
-        System.out.println(result.hasErrors());
 
         if (result.hasErrors()) {
-            System.out.println("controle erreur");
+
             model.addAttribute("errors", result.getAllErrors());
             Film film = filmService.getById(id);
             model.addAttribute("film", film);

@@ -49,7 +49,7 @@ public class FilmController {
 
     @PostMapping("/addfilm")
     public String creerUnFilmPost(@ModelAttribute("film") Film film,BindingResult bindingResult) {
-        System.out.println(film + "post");
+
         this.filmService.addFilm(film);
 
         System.out.println(film);
