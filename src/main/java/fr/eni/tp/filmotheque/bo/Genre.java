@@ -1,5 +1,7 @@
 package fr.eni.tp.filmotheque.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titre;
+    @JsonIgnore
     @OneToMany(targetEntity = Film.class, mappedBy = "genre")
     private List<Film> films;
 

@@ -64,10 +64,11 @@ public class FilmServiceBouchon implements FilmService {
 	}
 
 	@Override
-	public void addFilm(Film film) {
+	public Film addFilm(Film film) {
 		// Sauvegarde du film
 		film.setId((long) indexFilms++);
 		lstFilms.add(film);
+		return film;
 	}
 
 	@Override

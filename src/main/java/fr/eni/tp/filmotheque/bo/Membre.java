@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.bytebuddy.implementation.bind.annotation.Default;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ public class Membre extends Personne{
     @Column(columnDefinition = "boolean default false")
     private boolean admin;
 
+    @JsonIgnore
     @OneToMany(targetEntity = Avis.class, mappedBy = "auteur")
     private List<Avis> avisList;
 

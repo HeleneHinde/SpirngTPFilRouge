@@ -17,7 +17,7 @@ public interface FilmService {
 
     public  Participant getParticipantById(long id);
 
-    public  void addFilm(Film film);
+    public  Film addFilm(Film film);
 
     public void addAvis(Avis avis);
 

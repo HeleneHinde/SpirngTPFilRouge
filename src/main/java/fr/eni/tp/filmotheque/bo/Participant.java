@@ -1,5 +1,7 @@
 package fr.eni.tp.filmotheque.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -9,8 +11,11 @@ import java.util.Objects;
 @Entity
 public class Participant extends Personne{
 
+    @JsonIgnore
     @ManyToMany(targetEntity = Film.class, mappedBy = "acteurs")
     private List<Film> filmsActeur;
+
+    @JsonIgnore
     @OneToMany(targetEntity = Film.class, mappedBy = "realisateur")
     private List<Film> filmReal;
 
@@ -25,9 +30,11 @@ public class Participant extends Personne{
 
     }
 
+
     public List<Film> getFilmsActeur() {
         return filmsActeur;
     }
+
 
     public void setFilmsActeur(List<Film> filmsActeur) {
         this.filmsActeur = filmsActeur;

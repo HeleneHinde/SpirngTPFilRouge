@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Avis {
     @Size(max = 250, message = "La longueur du commentaire ne doit pas dépasser 250 caractères")
     private String commentaire;
 
+    @JsonIgnore
     @ManyToOne(targetEntity = Film.class)
     private Film film;
 

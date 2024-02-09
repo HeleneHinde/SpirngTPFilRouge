@@ -62,9 +62,10 @@ public class FilmServiceSql implements FilmService {
     }
 
     @Override
-    public void addFilm(Film film) {
+    public Film addFilm(Film film) {
         filmRepository.save(film);
 
+        return film;
     }
 
     @Override

@@ -123,10 +123,10 @@ public class Film {
 /*                "annee=" + annee + '\n'+
                 "duree=" + duree + '\n'+*/
                 "synopsis='" + synopsis + '\n' +
-                "realisateur=" + realisateur + '\n'+
-                "acteurs=" + acteurs + '\n'+
-                "genres=" + genre + '\n'+
-                "avisList=" + avisList + '\n'+
+/*                "realisateur=" + realisateur + '\n'+
+                "acteurs=" + acteurs + '\n'+*/
+/*                "genres=" + genre + '\n'+
+                "avisList=" + avisList + '\n'+*/
                 '}';
     }
 
